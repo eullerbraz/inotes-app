@@ -1,12 +1,12 @@
 {
   "private": true,
-  "name": "next-electron-app",
-  "description": "Nextron app",
+  "name": "inotes-app",
+  "description": "Simple notes app",
   "version": "1.0.0",
   "author": "Euller Braz <euller.braz99@gmail.com>",
   "main": "main/index.js",
-  "homepage": "https://github.com/eullerbraz/nextron-app",
-  "productName": "Next Electron",
+  "homepage": "https://github.com/eullerbraz/inotes-app",
+  "productName": "iNotes",
   "scripts": {
     "clean": "rimraf dist main renderer/out renderer/.next",
     "dev": "npm run build-electron && electron .",
