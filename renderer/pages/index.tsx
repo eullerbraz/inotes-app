@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import Head from "next/head";
+import Textarea from "../components/Textarea";
 
 const IndexPage = () => {
   useEffect(() => {
@@ -17,7 +18,7 @@ const IndexPage = () => {
         <meta charSet="utf-8" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-      <textarea></textarea>
+      <Textarea />
     </>
   );
 };
