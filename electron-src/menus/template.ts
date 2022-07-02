@@ -19,12 +19,12 @@ const template: MenuItemConstructorOptions[] = [
     submenu: [
       {
         label: "New File",
-        click: () => newFile(file),
+        click: () => newFile(),
         accelerator: "CmdOrCtrl+N",
       },
       {
         label: "Open File",
-        click: () => openFile(file),
+        click: () => openFile(file.path),
         accelerator: "CmdOrCtrl+O",
       },
       {
@@ -85,9 +85,11 @@ const template: MenuItemConstructorOptions[] = [
 ];
 
 ipcMain.on("update-content", async (_, content: any) => {
-  console.log(file);
-
   file.content = content;
+});
+
+ipcMain.on("update-file", async (_, newFile: any) => {
+  file = newFile;
 });
 
 export default template;

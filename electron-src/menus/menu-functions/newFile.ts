@@ -2,8 +2,8 @@ import { app, BrowserWindow } from "electron";
 
 import { File } from "../types/File";
 
-const newFile = (file: File) => {
-  file = {
+const newFile = () => {
+  const file: File = {
     name: "new-file.txt",
     content: "",
     saved: false,

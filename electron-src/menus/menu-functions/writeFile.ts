@@ -15,7 +15,9 @@ const writeFile = (filepath: string, file: File) => {
     const mainWindow = BrowserWindow.getAllWindows()[0];
 
     mainWindow.webContents.send("set-file", file);
-  } catch (error) {}
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 export default writeFile;

@@ -4,20 +4,20 @@ import path from "path";
 import { File } from "../types/File";
 import readFile from "./readFile";
 
-const openFile = async (file: File) => {
+const openFile = async (filePath: string) => {
   const dialogFile = await dialog.showOpenDialog({
-    defaultPath: file.path,
+    defaultPath: filePath,
   });
 
   if (dialogFile.canceled) return false;
 
-  const filePath = dialogFile.filePaths[0];
+  const dialogFilePath = dialogFile.filePaths[0];
 
-  file = {
-    name: path.basename(filePath),
-    content: readFile(filePath),
+  const file: File = {
+    name: path.basename(dialogFilePath),
+    content: readFile(dialogFilePath),
     saved: true,
-    path: filePath,
+    path: dialogFilePath,
   };
 
   const mainWindow = BrowserWindow.getAllWindows()[0];

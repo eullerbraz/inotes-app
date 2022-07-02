@@ -4,10 +4,12 @@ import Textarea from "../components/Textarea";
 
 const IndexPage = () => {
   const [text, setText] = useState("");
-  const [pageTitle, setPageTitle] = useState("new-file.txt | iNotes");
+  const [pageTitle, setPageTitle] = useState("new-file | iNotes");
 
   useEffect(() => {
-    const setFile = (_event, file) => {
+    const setFile = (event, file) => {
+      global.ipcRenderer.send("update-file", file);
+
       setText(file.content);
       setPageTitle(`${file.name} | iNotes`);
     };
