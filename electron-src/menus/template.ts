@@ -1,6 +1,7 @@
 import { MenuItemConstructorOptions, ipcMain } from "electron";
 
 import newFile from "./menu-functions/newFile";
+import save from "./menu-functions/save";
 import saveAs from "./menu-functions/saveAs";
 import { File } from "./types/File";
 
@@ -24,6 +25,7 @@ const template: MenuItemConstructorOptions[] = [
       },
       {
         label: "Save",
+        click: () => save(file),
       },
       {
         label: "Save As",
