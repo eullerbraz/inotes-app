@@ -3,7 +3,7 @@ import { join } from "path";
 import { format } from "url";
 
 // Packages
-import { BrowserWindow, app, ipcMain, Menu } from "electron";
+import { BrowserWindow, app, Menu } from "electron";
 import isDev from "electron-is-dev";
 import prepareNext from "electron-next";
 
@@ -40,13 +40,3 @@ app.on("ready", async () => {
 app.on("window-all-closed", app.quit);
 
 Menu.setApplicationMenu(menus);
-
-// listen the channel `message` and resend the received message to the renderer process
-ipcMain.on("message", async (_, message: any) => {
-  console.log(message);
-  // setTimeout(() => event.sender.send("message", "hi from electron"), 500);
-  // await dialog.showMessageBox({
-  //   title: "Title",
-  //   message: "Message",
-  // });
-});

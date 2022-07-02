@@ -1,6 +1,7 @@
-import { MenuItemConstructorOptions } from "electron";
+import { MenuItemConstructorOptions, ipcMain } from "electron";
 
 import newFile from "./menu-functions/newFile";
+import saveAs from "./menu-functions/saveAs";
 import { File } from "./types/File";
 
 let file: File = {
@@ -26,6 +27,7 @@ const template: MenuItemConstructorOptions[] = [
       },
       {
         label: "Save As",
+        click: () => saveAs(file),
       },
       {
         label: "Exit",
@@ -34,5 +36,9 @@ const template: MenuItemConstructorOptions[] = [
     ],
   },
 ];
+
+ipcMain.on("update-content", async (_, content: any) => {
+  file.content = content;
+});
 
 export default template;

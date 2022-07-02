@@ -12,19 +12,20 @@ const IndexPage = () => {
       setPageTitle(`${file.name} | iNotes`);
     };
 
-    // add a listener to 'message' channel
     global.ipcRenderer.addListener("set-file", setFile);
-
-    const onSayHiClick = () => {
-      global.ipcRenderer.send("message", "hi from next");
-    };
-
-    onSayHiClick();
 
     return () => {
       global.ipcRenderer.removeListener("set-file", setFile);
     };
   }, []);
+
+  useEffect(() => {
+    const updateContent = () => {
+      global.ipcRenderer.send("update-content", text);
+    };
+
+    updateContent();
+  }, [text]);
 
   return (
     <>
