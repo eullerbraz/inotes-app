@@ -1,4 +1,4 @@
-import { MenuItemConstructorOptions, ipcMain } from "electron";
+import { MenuItemConstructorOptions, ipcMain, shell } from "electron";
 
 import newFile from "./menu-functions/newFile";
 import openFile from "./menu-functions/openFile";
@@ -43,9 +43,50 @@ const template: MenuItemConstructorOptions[] = [
       },
     ],
   },
+  {
+    label: "Edit",
+    submenu: [
+      {
+        label: "Undo",
+        role: "undo",
+      },
+      {
+        label: "Redo",
+        role: "redo",
+      },
+      {
+        type: "separator",
+      },
+      {
+        label: "Cut",
+        role: "cut",
+      },
+      {
+        label: "Copy",
+        role: "copy",
+      },
+      {
+        label: "Paste",
+        role: "paste",
+      },
+    ],
+  },
+  {
+    label: "Help",
+    submenu: [
+      {
+        label: "GitHub Repository",
+        click: () => {
+          shell.openExternal("https://github.com/eullerbraz/inotes-app");
+        },
+      },
+    ],
+  },
 ];
 
 ipcMain.on("update-content", async (_, content: any) => {
+  console.log(file);
+
   file.content = content;
 });
 
