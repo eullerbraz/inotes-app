@@ -3,9 +3,12 @@ import { join } from "path";
 import { format } from "url";
 
 // Packages
-import { BrowserWindow, app, ipcMain, dialog } from "electron";
+import { BrowserWindow, app, ipcMain, Menu } from "electron";
 import isDev from "electron-is-dev";
 import prepareNext from "electron-next";
+
+// Internal
+import menus from "./menus";
 
 // Prepare the renderer once the app is ready
 app.on("ready", async () => {
@@ -29,18 +32,21 @@ app.on("ready", async () => {
         slashes: true,
       });
 
-  mainWindow.loadURL(url);
+  await mainWindow.loadURL(url);
+  mainWindow.webContents.openDevTools();
 });
 
 // Quit the app once all windows are closed
 app.on("window-all-closed", app.quit);
 
+Menu.setApplicationMenu(menus);
+
 // listen the channel `message` and resend the received message to the renderer process
 ipcMain.on("message", async (_, message: any) => {
   console.log(message);
   // setTimeout(() => event.sender.send("message", "hi from electron"), 500);
-  await dialog.showMessageBox({
-    title: "Title",
-    message: "Message",
-  });
+  // await dialog.showMessageBox({
+  //   title: "Title",
+  //   message: "Message",
+  // });
 });
