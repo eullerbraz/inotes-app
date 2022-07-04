@@ -33,7 +33,7 @@ app.on("ready", async () => {
       });
 
   await mainWindow.loadURL(url);
-  mainWindow.webContents.openDevTools();
+  // mainWindow.webContents.openDevTools();
 });
 
 // Quit the app once all windows are closed
